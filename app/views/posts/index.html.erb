@@ -1,0 +1,26 @@
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <% if @current_user %>
+        <th>Author</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <% user = User.find_by(id: post.user_id) %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+        <% if @current_user %>
+          <td><%= user.name %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
